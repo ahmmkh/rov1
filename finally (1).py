@@ -8,6 +8,7 @@ import serial
 arduino = serial.Serial("COM3",9600,timeout=.1)
 time.sleep(2)
 
+LoayWasHere = True
 
 pygame.init()
 pygame.joystick.init()
