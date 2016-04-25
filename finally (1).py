@@ -13,7 +13,13 @@ pygame.init()
 pygame.joystick.init()
 gamepad = pygame.joystick.Joystick(0)
 gamepad.init()
-
+############# The function that return the value formated as we want in the arduino serial ############### 
+def ret(acc,sym):
+   x=acc*255.0
+   z=sym+str(int(x))
+   y = z.encode()
+   return y 
+######################################endof the function #################################################   
 while pygame.event.poll().type != pygame.QUIT:
    
     if gamepad.get_button(6) and gamepad.get_button(3):
@@ -68,10 +74,10 @@ while pygame.event.poll().type != pygame.QUIT:
         arduino.write(b'b')
     elif gamepad.get_axis(2) > 0.05:
 ##        print "backward"
-        x = gamepad.get_axis(2) * 255.0
-        z='f'+str(int(x))
-        y = z.encode()
-        arduino.write(y)        
+        arduino.write(ret(gamepad.get_axis(2),'f')) 
+    elif gamepad.get_axis(2) < -0.05:
+        arduino.write(ret(-(gamepad.get_axis(2)),'b'))   
+       
     #################################
     elif gamepad.get_hat(0) == (0, -1):
         arduino.write(b'g')
