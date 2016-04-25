@@ -1,3 +1,6 @@
+
+# now starting from line 69 we want to applay this to the whole program
+
 import pygame
 import time
 import serial
