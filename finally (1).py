@@ -20,80 +20,89 @@ def ret(acc,sym):
    y = z.encode()
    return y 
 ######################################endof the function #################################################   
-while pygame.event.poll().type != pygame.QUIT:
-   
-    if gamepad.get_button(6) and gamepad.get_button(3):
-##        print "upwith"
-        arduino.write(b't')
-   #  elif gamepad.get_button(6) and gamepad.get_button(0):
-##        print 'downwith' 
-    #elif gamepad.get_button(0) == True:
-###        print('down')
-        #arduino.write(b'd')
-       
-        '''
-    elif gamepad.get_button(1) == True:
-        arduino.write(b'x')
-        print('narrowRight')
-    elif gamepad.get_button(2) == True:
-        arduino.write(b'l')
-        print('narrowLeft')
-        '''
-#     elif gamepad.get_button(3) == True:
-#        arduino.write(b'u')
-# ##        print('up')
-        '''
-    elif gamepad.get_button(4)==True:
-        print('backward')
-        arduino.write(b'b')
-    elif gamepad.get_button(5)==True:
-        print('forward')
-        arduino.write(b'f')
-        '''
-    #################################        
-#     elif gamepad.get_button(6)==True:
-# ##        print('arm')
-#        arduino.write(b'p')
-#     elif gamepad.get_button(7)==True:
-# # ##        print('arm')
-# #        arduino.write(b'i')
-   ################################
-    elif gamepad.get_axis(0)> 0.2:
-       arduino.write(ret(gamepad.get_axis(0),'r')) 
-    elif gamepad.get_axis(0)<- 0.1:
-       arduino.write(ret(-(gamepad.get_axis(0)),'l'))        
+while pygame.event.poll().type != pygame.QUIT: 
+   if gamepad.get_axis(3)< -0.2:
+      arduino.write(ret(-(gamepad.get_axis(3)),'u'))
+      if gamepad.get_axis(0)> 0.2:
+         arduino.write(ret(gamepad.get_axis(0),'r'))  
+      elif gamepad.get_axis(0)<- 0.1:
+         arduino.write(ret(-(gamepad.get_axis(0)),'l'))         
+         ##################################
+      elif gamepad.get_button(6) == True:
+         arduino.write(b'o0');
+      elif gamepad.get_button(7) == True:
+         arduino.write(b'c0');    
+      elif gamepad.get_axis(2) > 0.05:
+               ##        print "backward"
+         arduino.write(ret(gamepad.get_axis(2),'f')) 
+      elif gamepad.get_axis(2) < -0.05:
+         arduino.write(ret(-(gamepad.get_axis(2)),'b'))
+      else:
+         arduino.write(b't')
+         arduino.write(ret(0,'b'))
+         arduino.write(ret(0,'f'))
+         arduino.write(ret(0,'l'))
+         arduino.write(ret(0,'r'))
+  ######################################################       
+   elif gamepad.get_axis(3)> 0.1:
+      arduino.write(ret(gamepad.get_axis(3),'d'))
+      if gamepad.get_axis(0)> 0.2:
+         arduino.write(ret(gamepad.get_axis(0),'r'))  
+      elif gamepad.get_axis(0)<- 0.1:
+         arduino.write(ret(-(gamepad.get_axis(0)),'l'))         
+         ##################################
+      elif gamepad.get_button(6) == True:
+         arduino.write(b'o0');
+      elif gamepad.get_button(7) == True:
+         arduino.write(b'c0');    
+      elif gamepad.get_axis(2) > 0.05:
+               ##        print "backward"
+         arduino.write(ret(gamepad.get_axis(2),'f')) 
+      elif gamepad.get_axis(2) < -0.05:
+         arduino.write(ret(-(gamepad.get_axis(2)),'b'))
+      else:
+         arduino.write(b't')
+         arduino.write(ret(0,'b'))
+         arduino.write(ret(0,'f'))
+         arduino.write(ret(0,'l'))
+         arduino.write(ret(0,'r'))
+  ##################################################################
+   elif gamepad.get_button(6) == True:
+      arduino.write(b'o0');
+   elif gamepad.get_button(7) == True:
+      arduino.write(b'c0');         
+   elif gamepad.get_button(0) == True:
+      arduino.write(b'w0');
+   elif gamepad.get_button(3) == True:
+      arduino.write(b's0');   
+   elif gamepad.get_axis(0)> 0.2:
+      arduino.write(ret(gamepad.get_axis(0),'r')) 
+   elif gamepad.get_axis(0)<- 0.1:
+      arduino.write(ret(-(gamepad.get_axis(0)),'l'))         
+         ##################################
+   elif gamepad.get_axis(2) > 0.05:
+         ##        print "backward"
+      arduino.write(ret(gamepad.get_axis(2),'f')) 
+   elif gamepad.get_axis(2) < -0.05:
+      arduino.write(ret(-(gamepad.get_axis(2)),'b'))   
+         
     #################################
-    elif gamepad.get_axis(3)> 0.1:
-       arduino.write(ret(gamepad.get_axis(3),'u')) 
-    elif gamepad.get_axis(3)< -0.2:
-       arduino.write(ret(-(gamepad.get_axis(3)),'d')) 
-    ##################################
-    elif gamepad.get_axis(2) > 0.05:
-##        print "backward"
-        arduino.write(ret(gamepad.get_axis(2),'f')) 
-    elif gamepad.get_axis(2) < -0.05:
-        arduino.write(ret(-(gamepad.get_axis(2)),'b'))   
-       
-    #################################
-    elif gamepad.get_hat(0) == (0, -1):
-        arduino.write(b'g')
-##        print('camUp')
-    elif gamepad.get_hat(0) == (0, 1):
-        arduino.write(b'j')
-##        print('camDown')
+
     #################################
     #################################
-    else:
+   else:
 ##        print('Stop Everything!')
-        arduino.write(b'r0')
+      arduino.write(b'z0')
+      arduino.write(b't')
     ##################################
-    '''
-    elif gamepad.get_hat(0) == (-1, 0):
-        #print('cameraLeft')
-        arduino.write(b'4')
-    elif gamepad.get_hat(0) == (1, 0):
-        arduino.write(b'6')
-        print('cameraRight')
-        '''
+   '''
+  elif gamepad.get_hat(0) == (-1, 0):
+  #print('cameraLeft')
+  arduino.write(b'4')
+      elif gamepad.get_hat(0) == (1, 0):
+      arduino.write(b'6')
+      print('cameraRight')
+      '''
     ####################################
-    time.sleep(0.1)
+   time.sleep(0.1)
+    
